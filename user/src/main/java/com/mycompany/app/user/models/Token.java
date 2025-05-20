@@ -2,6 +2,10 @@ package com.mycompany.app.user.models;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,9 +15,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @ToString
+@Entity
+@Table(name = "tokens")
 public class Token {
+    @Id
     private String id;
+
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "expires_at")
     private LocalDateTime expiresAt;
 
     public boolean verifyExpiry() {
