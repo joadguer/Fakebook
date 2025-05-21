@@ -3,6 +3,7 @@ package com.mycompany.app.user.models;
 import java.util.regex.Pattern;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import com.mycompany.app.user.exceptions.AuthException;
 import com.mycompany.app.user.exceptions.InvalidEmail;
 import com.mycompany.app.user.exceptions.InvalidPassword;
 
@@ -10,21 +11,25 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
 
-@Builder
-@AllArgsConstructor
 @Getter
 @ToString
 @Entity
 @Table(name = "users")
 public class User {
 
+    @Builder
+    public User(String email, String password) throws AuthException {
+        this.email = email;
     
+        validate(password);
+        this.password = encryptPassword(password);
+    }
+
     @Id
     @Column(nullable = false, unique = true)
     private String email;
@@ -38,16 +43,16 @@ public class User {
     }
 
 
-    private boolean validatePassword() {
-        return this.password != null && this.password.length() >= 8;
+    private boolean validatePassword(String password) {
+        return password != null && this.password.length() >= 8;
     }
 
 
-    public void validate() throws Exception {
+    private void validate(String password) throws AuthException {
         if (!validateMail()) {
             throw new InvalidEmail();
         }
-        if (!validatePassword()) {
+        if (!validatePassword(password)) {
             throw new InvalidPassword();
         }
     }
@@ -62,9 +67,9 @@ public class User {
     public boolean verifyPassword(String password) {
         return BCrypt.checkpw(password, this.password);
     }
-
-    public String encryptPassword(String password) {
-        return BCrypt.hashpw(this.password, BCrypt.gensalt());
+    
+    private String encryptPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
 }
