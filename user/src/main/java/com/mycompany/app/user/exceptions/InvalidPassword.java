@@ -6,9 +6,4 @@ public class InvalidPassword extends AuthException {
         super("Invalid password.");
     }
 
-    public InvalidPassword(String message) {
-        super(message);
-    }
-
-
 }

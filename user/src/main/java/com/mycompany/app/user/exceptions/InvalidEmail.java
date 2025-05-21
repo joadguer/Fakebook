@@ -8,5 +8,7 @@ public class InvalidEmail extends AuthException{
     // Constructor con mensaje personalizado
     public InvalidEmail(String message) {
         super(message);
+
+    
 }
 }
