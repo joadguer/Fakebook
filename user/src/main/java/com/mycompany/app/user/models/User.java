@@ -52,9 +52,9 @@ public class User {
         }
     }
 
-    public void updatePassword(String newPassword) {
+    public void updatePassword(String newPassword) throws InvalidPassword {
         if (newPassword == null || newPassword.length() < 8) {
-            throw new IllegalArgumentException("Password must be at least 8 characters long");
+            throw new InvalidPassword("Password must be at least 8 characters long");
         }
         this.password = BCrypt.hashpw(newPassword, BCrypt.gensalt());
     }
