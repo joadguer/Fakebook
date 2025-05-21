@@ -3,6 +3,12 @@ package com.mycompany.app.user.models;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+import java.util.regex.Pattern;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
+import com.mycompany.app.user.exceptions.InvalidEmail;
+import com.mycompany.app.user.exceptions.InvalidPassword;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,26 +28,43 @@ import lombok.ToString;
 @Table(name = "users")
 public class User {
 
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
-    private String nombre;
-
-    @Column(nullable = false)
-    private String contraseña;
-
-    @Column(name = "fecha_registro", nullable = false)
-    private LocalDateTime fechaRegistro;
-
-    @Column(name = "activo", nullable = false)
-    private boolean activo;
-
-    // --- Constructores ---
+    private String password;
  
+    private boolean validateMail() {
+        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        return Pattern.matches(regex, this.email);
+    }
+
+
+    private boolean validatePassword() {
+        return this.password != null && this.password.length() >= 8;
+    }
+
+
+    public void validate() throws Exception {
+        if (!validateMail()) {
+            throw new InvalidEmail();
+        }
+        if (!validatePassword()) {
+            throw new InvalidPassword();
+        }
+    }
+
+    public void updatePassword(String nuevaContraseña) {
+        if (nuevaContraseña == null || nuevaContraseña.length() < 8) {
+            throw new IllegalArgumentException("La nueva contraseña debe tener al menos 8 caracteres.");
+        }
+        this.contraseña = BCrypt.hashpw(nuevaContraseña, BCrypt.gensalt());
+    }
+
+    public boolean verifyPassword(String contraseñaIngresada) {
+        return BCrypt.checkpw(contraseñaIngresada, this.contraseña);
+    }
 
 }
