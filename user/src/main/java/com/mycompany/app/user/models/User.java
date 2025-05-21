@@ -56,15 +56,15 @@ public class User {
         if (newPassword == null || newPassword.length() < 8) {
             throw new InvalidPassword("Password must be at least 8 characters long");
         }
-        this.password = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+            this.password = encryptPassword(newPassword);
+        }
+
+    public boolean verifyPassword(String password) {
+        return BCrypt.checkpw(password, this.password);
     }
 
-    public boolean verifyPassword(String yourPassword) {
-        return BCrypt.checkpw(yourPassword, this.password);
-    }
-
-    public void encryptPassword(String password) {
-        password = BCrypt.hashpw(this.password, BCrypt.gensalt());
+    public String encryptPassword(String password) {
+        return BCrypt.hashpw(this.password, BCrypt.gensalt());
     }
 
 }
