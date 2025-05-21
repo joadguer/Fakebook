@@ -44,7 +44,7 @@ public class User {
 
 
     private boolean validatePassword(String password) {
-        return password != null && this.password.length() >= 8;
+        return  password.length() >= 8;
     }
 
 
@@ -58,7 +58,7 @@ public class User {
     }
 
     public void updatePassword(String newPassword) throws InvalidPassword {
-        if (newPassword == null || newPassword.length() < 8) {
+        if (newPassword.length() < 8) {
             throw new InvalidPassword("Password must be at least 8 characters long");
         }
             this.password = encryptPassword(newPassword);
