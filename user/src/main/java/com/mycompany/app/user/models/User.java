@@ -1,9 +1,5 @@
 package com.mycompany.app.user.models;
 
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
-
-import jakarta.persistence.*;
 import java.util.regex.Pattern;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
@@ -65,6 +61,10 @@ public class User {
 
     public boolean verifyPassword(String yourPassword) {
         return BCrypt.checkpw(yourPassword, this.password);
+    }
+
+    public void encryptPassword(String password) {
+        password = BCrypt.hashpw(this.password, BCrypt.gensalt());
     }
 
 }
