@@ -8,4 +8,5 @@ public class InvalidToken extends AuthException{
     public static InvalidToken invalid(String token) {
         return new InvalidToken("Invalid token: " + token);
     }
+
 }

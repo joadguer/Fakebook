@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.app.user.email.EmailSender;
 import com.mycompany.app.user.exceptions.AuthException;
+import com.mycompany.app.user.exceptions.InvalidToken;
 import com.mycompany.app.user.models.Token;
 import com.mycompany.app.user.repositories.TokenRepository;
 import com.mycompany.app.user.repositories.UserRepository;
@@ -47,7 +48,7 @@ public class AuthServiceImpl implements AuthService{
     @Override
     public void verifyForgotPasswordToken(String tokenId) throws AuthException{
         Token token = tokenRepository.findById(tokenId);
-        if (token.verifyExpiry()) return;
+        if (!token.verifyExpiry()) throw InvalidToken.invalid(tokenId);
         tokenRepository.delete(tokenId);
     }
 
