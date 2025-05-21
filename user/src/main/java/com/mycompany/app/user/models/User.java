@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,9 +27,9 @@ public class User {
     private boolean activo;
 
     // --- Constructores ---
-    public Usuario() {}
+    public User() {}
 
-    public Usuario(String email, String nombre, String contraseña) {
+    public User(String email, String nombre, String contraseña) {
         this.email = email;
         this.nombre = nombre;
         this.contraseña = contraseña;
