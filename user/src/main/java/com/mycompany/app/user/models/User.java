@@ -56,15 +56,15 @@ public class User {
         }
     }
 
-    public void updatePassword(String nuevaContraseña) {
-        if (nuevaContraseña == null || nuevaContraseña.length() < 8) {
-            throw new IllegalArgumentException("La nueva contraseña debe tener al menos 8 caracteres.");
+    public void updatePassword(String newPassword) {
+        if (newPassword == null || newPassword.length() < 8) {
+            throw new IllegalArgumentException("Password must be at least 8 characters long");
         }
-        this.contraseña = BCrypt.hashpw(nuevaContraseña, BCrypt.gensalt());
+        this.password = BCrypt.hashpw(newPassword, BCrypt.gensalt());
     }
 
-    public boolean verifyPassword(String contraseñaIngresada) {
-        return BCrypt.checkpw(contraseñaIngresada, this.contraseña);
+    public boolean verifyPassword(String yourPassword) {
+        return BCrypt.checkpw(yourPassword, this.password);
     }
 
 }
