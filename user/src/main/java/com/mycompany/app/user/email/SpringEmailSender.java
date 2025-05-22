@@ -14,7 +14,7 @@ public class SpringEmailSender implements EmailSender{
     @Autowired
     private JavaMailSender mailSender;
 
-    @Value("${EMAIL_FROM}")
+    @Value("${EMAIL_USERNAME}")
     private String emailFrom;
 
     @Override
