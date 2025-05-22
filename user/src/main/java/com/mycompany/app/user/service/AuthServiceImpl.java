@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.app.user.email.EmailSender;
 import com.mycompany.app.user.exceptions.AuthException;
+import com.mycompany.app.user.exceptions.InvalidPassword;
 import com.mycompany.app.user.exceptions.InvalidToken;
 import com.mycompany.app.user.models.Token;
+import com.mycompany.app.user.models.User;
 import com.mycompany.app.user.repositories.TokenRepository;
 import com.mycompany.app.user.repositories.UserRepository;
 
@@ -29,20 +31,21 @@ public class AuthServiceImpl implements AuthService{
 
     @Override
     public void signUp(String email, String password) throws AuthException{
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'signUp'");
+        User user = User.builder().email(email).password(password).build();
+        userRepository.save(user);
     }
 
     @Override
     public void signIn(String email, String password) throws AuthException{
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'signIn'");
+        User user = userRepository.find(email);
+        if (!user.verifyPassword(password)) throw new InvalidPassword();
     }
 
     @Override
     public void changePassword(String email, String password) throws AuthException{
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'changePassword'");
+        User user = userRepository.find(email);
+        user.updatePassword(password);
+        userRepository.save(user);
     }
 
     @Override
