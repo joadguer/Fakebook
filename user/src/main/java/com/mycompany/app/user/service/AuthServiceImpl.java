@@ -10,6 +10,7 @@ import com.mycompany.app.user.email.EmailSender;
 import com.mycompany.app.user.exceptions.AuthException;
 import com.mycompany.app.user.exceptions.InvalidPassword;
 import com.mycompany.app.user.exceptions.InvalidToken;
+import com.mycompany.app.user.exceptions.UserAlreadyRegistered;
 import com.mycompany.app.user.models.Token;
 import com.mycompany.app.user.models.User;
 import com.mycompany.app.user.repositories.TokenRepository;
@@ -31,6 +32,7 @@ public class AuthServiceImpl implements AuthService{
 
     @Override
     public void signUp(String email, String password) throws AuthException{
+        if (userRepository.exists(email)) throw UserAlreadyRegistered.withEmail(email);
         User user = User.builder().email(email).password(password).build();
         userRepository.save(user);
     }
@@ -51,8 +53,8 @@ public class AuthServiceImpl implements AuthService{
     @Override
     public void verifyForgotPasswordToken(String tokenId) throws AuthException{
         Token token = tokenRepository.findById(tokenId);
-        if (!token.verifyExpiry()) throw InvalidToken.invalid(tokenId);
         tokenRepository.delete(tokenId);
+        if (!token.verifyExpiry()) throw InvalidToken.invalid(tokenId);
     }
 
     @Override

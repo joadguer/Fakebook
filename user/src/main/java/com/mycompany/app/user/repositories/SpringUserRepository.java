@@ -26,6 +26,11 @@ public class SpringUserRepository implements UserRepository {
         innerSpringUserRepository.save(user);
     }
 
+    @Override
+    public boolean exists(String email) {
+        return innerSpringUserRepository.existsById(email);
+    }
+
 }
 interface InnerSpringUserRepository extends JpaRepository<User, String> {
 

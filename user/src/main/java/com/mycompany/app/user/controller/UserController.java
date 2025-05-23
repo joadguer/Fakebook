@@ -49,8 +49,8 @@ public class UserController {
         return ResponseEntity.status(200).build();
     }
 
-    @PostMapping("/token/forgot")
-    public ResponseEntity<Boolean> sendForgotPasswordEmail(@Valid @RequestBody String email) throws AuthException{
+    @PostMapping("/token/forgot/{email}")
+    public ResponseEntity<Boolean> sendForgotPasswordEmail(@Valid @PathVariable String email) throws AuthException{
         authService.sendForgotPasswordEmail(email);
         return ResponseEntity.status(200).build();
     }

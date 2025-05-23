@@ -22,7 +22,7 @@ public class SpringEmailSender implements EmailSender{
         try {
             sendMail(email, subject, message);
         } catch (Exception e) {
-            throw EmailNotFound.notFound(email);
+            throw new EmailNotFound(e.getMessage());
         }
     }
 
