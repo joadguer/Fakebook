@@ -26,7 +26,7 @@ public class User {
 
     @Builder
     public User(String email, String password) throws AuthException {
-        this.email = email;
+        this.email = email.toLowerCase().strip();
     
         validate(password);
         this.password = encryptPassword(password);

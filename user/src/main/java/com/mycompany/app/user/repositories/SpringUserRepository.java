@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mycompany.app.user.exceptions.UserAlreadyRegistered;
+
 import com.mycompany.app.user.exceptions.UserNotFound;
 import com.mycompany.app.user.models.User;
 
@@ -22,10 +22,7 @@ public class SpringUserRepository implements UserRepository {
     }
 
     @Override
-    public void save(User user) throws UserAlreadyRegistered{
-        if (!innerSpringUserRepository.findById(user.getEmail()).isEmpty()) {
-            throw new UserAlreadyRegistered("User with email " + user.getEmail() + " is already registered.");
-        }
+    public void save(User user){
         innerSpringUserRepository.save(user);
     }
 
