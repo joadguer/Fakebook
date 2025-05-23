@@ -27,7 +27,6 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public ResponseEntity<Boolean> signUp(@Valid @RequestBody AuthRequestBody signUpRequestBody) throws AuthException{
-        System.out.println(signUpRequestBody);
         authService.signUp(signUpRequestBody.getEmail(), signUpRequestBody.getPassword());
         return ResponseEntity.status(201).build();
     }
