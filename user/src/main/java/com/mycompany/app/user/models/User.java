@@ -13,12 +13,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
 @Getter
 @ToString
 @Entity
+@NoArgsConstructor
 @Table(name = "users")
 public class User {
 

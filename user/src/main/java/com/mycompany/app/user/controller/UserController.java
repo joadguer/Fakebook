@@ -15,7 +15,7 @@ import com.mycompany.app.user.exceptions.AuthException;
 import com.mycompany.app.user.http.request.AuthRequestBody;
 import com.mycompany.app.user.service.AuthService;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
@@ -26,31 +26,32 @@ public class UserController {
     private AuthService authService;
 
     @PostMapping("/sign-up")
-    private ResponseEntity<Boolean> signUp(@RequestBody AuthRequestBody signUpRequestBody) throws AuthException{
+    public ResponseEntity<Boolean> signUp(@Valid @RequestBody AuthRequestBody signUpRequestBody) throws AuthException{
+        System.out.println(signUpRequestBody);
         authService.signUp(signUpRequestBody.getEmail(), signUpRequestBody.getPassword());
         return ResponseEntity.status(201).build();
     }
 
     @PostMapping("/sign-in")
-    private ResponseEntity<Boolean> signIn(@RequestBody AuthRequestBody signUpRequestBody) throws AuthException{
+    public ResponseEntity<Boolean> signIn(@Valid @RequestBody AuthRequestBody signUpRequestBody) throws AuthException{
         authService.signIn(signUpRequestBody.getEmail(), signUpRequestBody.getPassword());
         return ResponseEntity.status(200).build();
     }
 
     @PutMapping("/password")
-    private ResponseEntity<Boolean> changePassword(@RequestBody AuthRequestBody signUpRequestBody) throws AuthException{
+    public ResponseEntity<Boolean> changePassword(@Valid @RequestBody AuthRequestBody signUpRequestBody) throws AuthException{
         authService.changePassword(signUpRequestBody.getEmail(), signUpRequestBody.getPassword());
         return ResponseEntity.status(200).build();
     }
 
     @GetMapping("/token/forgot/{tokenId}")
-    private ResponseEntity<Boolean> verifyForgotPasswordToken(@PathVariable @NotBlank String tokenId) throws AuthException{
+    public ResponseEntity<Boolean> verifyForgotPasswordToken(@Valid @PathVariable String tokenId) throws AuthException{
         authService.verifyForgotPasswordToken(tokenId);
         return ResponseEntity.status(200).build();
     }
 
     @PostMapping("/token/forgot")
-    private ResponseEntity<Boolean> sendForgotPasswordEmail(@RequestBody String email) throws AuthException{
+    public ResponseEntity<Boolean> sendForgotPasswordEmail(@Valid @RequestBody String email) throws AuthException{
         authService.sendForgotPasswordEmail(email);
         return ResponseEntity.status(200).build();
     }
