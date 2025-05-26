@@ -1,0 +1,18 @@
+
+.submit-button {
+    background-color: #59DAD4 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 15px !important;
+    cursor: pointer !important;
+}
+
+.submit-button:hover {
+    background-color: #4AC2C0 !important;
+}
+
+.generic-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

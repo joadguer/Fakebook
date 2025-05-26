@@ -1,0 +1,37 @@
+.input-text .MuiOutlinedInput-root {
+    border-radius: 15px;
+    height: 40px;
+    background-color: #EFFAFE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-text .MuiInputLabel-root {
+    margin-top: -7px;
+    padding-left: 5px;
+}
+
+.input-text .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: black;
+    border-width: 1px;
+}
+
+.input-text .MuiInputLabel-root.Mui-focused {
+    color: black;
+}
+
+.input-text .MuiFormHelperText-root {
+    background-color: #ffd1df;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+
+.input-text label {
+    font-style: italic;
+    color: #6D6D6D
+}
+
+.input-text .MuiInputLabel-shrink {
+    font-style: normal;
+}
