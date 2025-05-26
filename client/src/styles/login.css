@@ -1,0 +1,37 @@
+.logo img {
+    max-width: 5rem;
+}
+.container {
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* background-size: cover;
+    background-position: center; */
+    width: 100vw; /* asegúrate de usar todo el viewport */
+    height: 100vh;
+}
+
+
+.right-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 100vh;
+    background-color: #C5E7F1;
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: row-reverse; /* 🔄 Esto invierte el orden de los hijos */
+    justify-content: center;
+    align-items: center; 
+    background-size: cover;
+    background-position: center;
+    width: 60vw; /* asegúrate de usar todo el viewport */
+    height: 100vh;
+    background-image: url('../assets/background.png');
+}

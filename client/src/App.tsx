@@ -1,9 +1,11 @@
 import './App.css'
-
+import { AuthLayout } from './components/AuthLayout'
 function App() {
   
   return (
-    <></>
+    <>
+      <AuthLayout/>
+    </>
   )
 }
 
