@@ -1,6 +1,7 @@
 .input-container {
     position: relative;
     margin-bottom: 1rem;
+    display: inline;
   }
   
 .input-field {
@@ -11,14 +12,32 @@
     font-style: italic;             /* placeholder en cursiva */
     outline: none;
     margin: 0.5rem 0;
+    height: 1.5rem;
+    font-size: 1rem;
+    padding-right: 2.5rem;        /* Deja espacio a la derecha para el ícono */
 }
   
-.input-icon {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
+
+  
+.input-icon svg {
+    width: 1rem;
+    height: 1rem;
+    /* color: #666; */            /* Cambia el color si hace falta */
+  }
+
+  .input-icon {
     transform: translateY(-50%);
     color: #64748b;
+    position: absolute;
+    right: 0.75rem;               /* Aleja el ícono del borde derecho del input */
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
-}
-  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

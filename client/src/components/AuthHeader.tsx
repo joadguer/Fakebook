@@ -3,7 +3,6 @@ import React from 'react';
 import "../styles/login.css";
 
 interface AuthHeaderProps {
-  /** Texto a mostrar; por defecto invita a crear cuenta */
   text?: string;
 }
 

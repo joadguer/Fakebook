@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Input } from './Input';
 import { Button } from './Button';
-import { Mail, Eye, EyeOff } from 'lucide-react';
-import '../styles/loginForm.css';
+//  import { Mail, Eye, EyeOff } from 'lucide-react';
+import '../styles/SignupForm.css';
 import AuthMessage from './AuthMessage';
 
-export function LoginForm() {
+export function SignupForm() {
   const [data, setData] = useState({ email: '', password: '' });
   const [showPwd, setShowPwd] = useState(false);
 
@@ -26,24 +26,26 @@ export function LoginForm() {
             placeholder="Ingresa tu email"
             value={data.email}
             onChange={onChange}
-            icon={Mail}
-
           />
-             
+        <AuthMessage
+                    message="No tienes cuenta? Regístrate"
+                    // linkText="Inicia sesión"
+                    // linkTo="/auth/login"
+        />  
           <Input
             name="password"
             type={showPwd ? 'text' : 'password'}
             placeholder="Ingresa tu contraseña"
             value={data.password}
             onChange={onChange}
-            icon={showPwd ? EyeOff : Eye}
+            // icon={showPwd ? EyeOff : Eye}
             onIconClick={() => setShowPwd(!showPwd)}
           />
-          <AuthMessage
-                    message="¿Ya tienes cuenta? Inicia sesión"
+         <AuthMessage
+                    message="Olvisdaste tu contraseña?"
                     // linkText="Inicia sesión"
                     // linkTo="/auth/login"
-        />  
+        /> 
           <div className="btn-container"> 
             
             <Button type="submit">Iniciar sesión</Button>
@@ -54,4 +56,4 @@ export function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default SignupForm;
