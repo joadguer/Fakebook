@@ -1,0 +1,26 @@
+.login-form {
+    min-height: 15vh;
+    width: 100%;         
+    display: block;
+    align-items: center;
+    padding: 1rem;
+    flex-direction: column;
+    box-sizing: border-box; /* para que padding no meta scroll horizontal */
+  }
+
+  
+  .login-footer {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #0369a1;
+    margin-top: 0.75rem;
+
+  }
+  
+  .login-footer a {
+    text-decoration: underline;
+  }
+  
+  .login-form btn{
+align-items: center;
+     }

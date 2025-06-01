@@ -1,0 +1,7 @@
+.card {
+    border-radius: 9999px;           /* bordes completamente redondeados */
+    padding: 1.5rem;                 /* espacio interior */
+    max-width: 400px;
+    margin: 0;                  /* centrar horizontal */
+  }
+  

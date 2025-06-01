@@ -1,0 +1,26 @@
+.btn-container {
+    display: block;
+    width: 100%;
+    font-weight:    600;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+
+  }
+
+  .btn-container .btn{
+    display: inline;
+    width: 50%;
+    background-color: #c5cbd8;      /* azul vivo */
+    color: rgb(16, 15, 15);
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #a1a6b2;      /* azul más oscuro */
+    color: rgb(16, 15, 15);
+    border: 1px solid #0000; /* sin borde */
+  }
